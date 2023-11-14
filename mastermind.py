@@ -20,14 +20,14 @@ class Mastermind(object):
 
     def _build_mastermind(self):
         #Build a graphic Mastermind game
-        self.screen = display.set_mode((280,550))
+        self.screen = display.set_mode((400,550))
         display.set_caption('MasterMind')
 
         self.mmbg    = image.load('MMbg2.jpg')
-        self.palette = image.load('palette2.png')
+        self.palette = image.load('Palette3.png')
         self.myst    = image.load('myst.png')
 
-        self.palet_rect = Rect(20,440,240,30)
+        self.palet_rect = Rect(20,440,300,30)
         self.go_rect    = Rect(20,475,240,30)
         self.reset_rect = Rect(20,510,240,30)
 
