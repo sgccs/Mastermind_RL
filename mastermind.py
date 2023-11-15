@@ -57,10 +57,10 @@ class Mastermind(object):
         #Joke aside, this function compute the int representation of each combination
         res = dict()
         num = 0
-        for i in range(6):
-            for j in range(6):
-                for k in range(6):
-                    for l in range(6):
+        for i in range(10):
+            for j in range(10):
+                for k in range(10):
+                    for l in range(10):
                         res[num] = [i,j,k,l]
                         num = num + 1
         return res
@@ -102,7 +102,7 @@ class Mastermind(object):
         
         #Compute a random combination at the beginning of the game if the computer is playing against itself       
         elif len(self.combi) == 0:
-            self.combi = [rd.randint(0,5), rd.randint(0,5), rd.randint(0,5), rd.randint(0,5)]
+            self.combi = [rd.randint(0,9) for i in range(4)]
         
         if self.human:
             r = self.screen.blit(self.myst,(50,line*35+70))

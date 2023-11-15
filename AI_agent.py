@@ -6,10 +6,9 @@ from random import randint
 from mastermind import Mastermind
 
 def random_policy():
-    combi = [randint(0,5), randint(0,5), randint(0,5), randint(0,5)]
-    return(combi)
+    combi = [randint(0, 9), randint(0, 9), randint(0, 9), randint(0, 9)]
+    return combi
     
-
 class Sarsa(object):
     
     def __init__(self, learning_rate = 0.01, gamma = 0.9, q_table = dict(), is_qtable = False):
@@ -32,14 +31,15 @@ class Sarsa(object):
         if is_qtable:
             self.q_table = q_table
         else:
-            results_poss = ['00','01','10','11','02','20','11','30','03','21','12','04','40','31','13','22']
+            # Adjust the size of the Q-table based on the number of colors (10 in this case)
+            results_poss = ['00', '01', '10', '02', '20', '11', '30', '03', '21', '12', '04', '40', '31', '13', '22']
             q_temp = dict()
-            for i in range(1296):
+            for i in range(10000):  # Change this to 10000 for 10 colors
                 for s in results_poss:
-                    q_temp[str(i)+s] = np.array([0. for j in range(1296)])
-                    
-            q_temp['init'] = np.array([0. for j in range(1296)])
-            
+                    q_temp[str(i) + s] = np.array([0. for _ in range(10000)])  # Change this to 10000 for 10 colors
+
+            q_temp['init'] = np.array([0. for _ in range(10000)])  # Change this to 10000 for 10 colors
+
             self.q_table = q_temp
         
         
@@ -51,7 +51,7 @@ class Sarsa(object):
         #First we update the policy, ie the combination still possible, 
         #taking in account the environement feedback.
         if observation == 'init':
-            self.policy = [i for i in range(1296)]
+            self.policy = [i for i in range(10000)]
             
         else:
             pseudo_code = self.action_representation[ int(observation[:-2]) ]
@@ -109,10 +109,10 @@ class Sarsa(object):
         #For a tissue to wipe your bleeding eyes, please come to my room: Fayolle building, 11.30.31
         res = dict()
         num = 0
-        for i in range(6):
-            for j in range(6):
-                for k in range(6):
-                    for l in range(6):
+        for i in range(10):
+            for j in range(10):
+                for k in range(10):
+                    for l in range(10):
                         res[num] = [i,j,k,l]
                         num = num + 1
         return res

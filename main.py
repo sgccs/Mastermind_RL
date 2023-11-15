@@ -72,8 +72,8 @@ def save_table(table):
     line = "init;" + line + "\n"
     file.write(line)
     
-    results_poss = ['00','01','10','11','02','20','11','30','03','21','12','04','40','31','13','22']
-    for i in range(1296):
+    results_poss = ['00','01','10','02','20','11','30','03','21','12','04','40','31','13','22']
+    for i in range(10000):
         for s in results_poss:
             line = ";".join(str(v) for v in table[str(i)+s])
             line = str(i)+s + ";" + line + "\n"
@@ -86,7 +86,7 @@ def open_table(file_name, newline = ''):
     file = open(file_name, 'r')
     q_temp = dict()
     for row in csv.reader(file, delimiter = ';'):
-        q_temp[row[0]] = [float(row[k+1]) for k in range(1296)]
+        q_temp[row[0]] = [float(row[k+1]) for k in range(10000)]
     
     file.close()
     return(q_temp)
