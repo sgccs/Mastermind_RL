@@ -86,7 +86,7 @@ def open_table(file_name, newline = ''):
     file = open(file_name, 'r')
     q_temp = dict()
     for row in csv.reader(file, delimiter = ';'):
-        q_temp[row[0]] = [float(row[k+1]) for k in range(4096)]
+        q_temp[row[0]] = [float(row[k+1]) for k in range(6561)]
     
     file.close()
     return(q_temp)

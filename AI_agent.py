@@ -6,7 +6,7 @@ from random import randint
 from mastermind import Mastermind
 
 def random_policy():
-    combi = [randint(0,7), randint(0,7), randint(0,7), randint(0,7)]
+    combi = [randint(0,8), randint(0,8), randint(0,8), randint(0,8)]
     return(combi)
     
 
@@ -34,11 +34,11 @@ class Sarsa(object):
         else:
             results_poss = ['00','01','10','02','20','11','30','03','21','12','04','40','31','13','22']
             q_temp = dict()
-            for i in range(4096):
+            for i in range(6561):
                 for s in results_poss:
-                    q_temp[str(i)+s] = np.array([0. for j in range(4096)])
+                    q_temp[str(i)+s] = np.array([0. for j in range(6561)])
                     
-            q_temp['init'] = np.array([0. for j in range(4096)])
+            q_temp['init'] = np.array([0. for j in range(6561)])
             
             self.q_table = q_temp
         
@@ -51,7 +51,7 @@ class Sarsa(object):
         #First we update the policy, ie the combination still possible, 
         #taking in account the environement feedback.
         if observation == 'init':
-            self.policy = [i for i in range(4096)]
+            self.policy = [i for i in range(6561)]
             
         else:
             pseudo_code = self.action_representation[ int(observation[:-2]) ]
@@ -109,10 +109,10 @@ class Sarsa(object):
         #For a tissue to wipe your bleeding eyes, please come to my room: Fayolle building, 11.30.31
         res = dict()
         num = 0
-        for i in range(8):
-            for j in range(8):
-                for k in range(8):
-                    for l in range(8):
+        for i in range(9):
+            for j in range(9):
+                for k in range(9):
+                    for l in range(9):
                         res[num] = [i,j,k,l]
                         num = num + 1
         return res
